@@ -20,6 +20,31 @@ if (mobileToggle && navMenu) {
   });
 }
 
+// Google Places Autocomplete API Integration
+window.initGooglePlaces = function() {
+  const input = document.getElementById('venueLocation');
+  if (!input) return;
+
+  try {
+    if (window.google && window.google.maps && window.google.maps.places) {
+      const autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ['establishment', 'geocode'],
+        componentRestrictions: { country: 'us' },
+        fields: ['formatted_address', 'name', 'geometry']
+      });
+
+      autocomplete.addListener('place_changed', function() {
+        const place = autocomplete.getPlace();
+        if (place.formatted_address) {
+          input.value = place.name ? `${place.name}, ${place.formatted_address}` : place.formatted_address;
+        }
+      });
+    }
+  } catch (err) {
+    console.warn('Google Places API initialized with default fallback:', err);
+  }
+};
+
 // URL Query Params Package Pre-selection
 window.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
@@ -29,22 +54,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (packageParam && detailsField) {
     const formatted = packageParam.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    detailsField.value = `Inquiring about package: ${formatted}\n`;
+    detailsField.value = `Selected Package: ${formatted}\n`;
     
     if (eventTypeField) {
       if (packageParam.includes('wedding')) {
         eventTypeField.value = 'wedding';
+      } else if (packageParam.includes('restaurant')) {
+        eventTypeField.value = 'restaurant-venue';
       } else if (packageParam.includes('party') || packageParam.includes('nightlife')) {
         eventTypeField.value = 'private-party';
       } else if (packageParam.includes('corporate') || packageParam.includes('conference')) {
         eventTypeField.value = 'corporate-gala';
-      } else if (packageParam.includes('restaurant')) {
-        eventTypeField.value = 'restaurant-venue';
       }
     }
   }
 
-  // Populate & Validate Times & Dates on quote.html
+  // Attempt Google Places initialization if API already loaded
+  if (window.google && window.google.maps && window.google.maps.places) {
+    window.initGooglePlaces();
+  }
+
   initQuoteForm();
 });
 
@@ -72,12 +101,13 @@ function initQuoteForm() {
   if (!quoteForm) return;
 
   // 1. Strict Date Validation: Set min attribute to today (YYYY-MM-DD)
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${yyyy}-${mm}-${dd}`;
+
   if (eventDateField) {
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const dd = String(now.getDate()).padStart(2, '0');
-    const todayStr = `${yyyy}-${mm}-${dd}`;
     eventDateField.min = todayStr;
 
     eventDateField.addEventListener('change', () => {
@@ -109,9 +139,9 @@ function initQuoteForm() {
       endTimeSelect.appendChild(optEnd);
     }
 
-    // Default suggestions (e.g. 5:00 PM to 10:00 PM)
+    // Default suggestions (e.g. 5:00 PM to 11:00 PM - 6 hours)
     startTimeSelect.value = 17 * 60;
-    endTimeSelect.value = 22 * 60;
+    endTimeSelect.value = 23 * 60;
 
     const validateTimes = () => {
       if (!startTimeSelect.value || !endTimeSelect.value) return true;
@@ -161,20 +191,20 @@ function initQuoteForm() {
         return;
       }
 
-      // Check required fields
+      // Check standard form constraints
       if (!quoteForm.checkValidity()) {
         quoteForm.reportValidity();
         return;
       }
 
-      // Process submission
+      // Successful submission presentation
       if (formStatus) {
         formStatus.className = 'form-status success';
-        formStatus.textContent = 'Thank you! Your quote request has been verified and submitted. Our event coordinator will contact you within 24 hours.';
+        formStatus.textContent = 'Thank you! Your quote request has been verified and submitted. Our event director will send your proposal within 24 hours.';
         quoteForm.reset();
         if (eventDateField) eventDateField.min = todayStr;
         startTimeSelect.value = 17 * 60;
-        endTimeSelect.value = 22 * 60;
+        endTimeSelect.value = 23 * 60;
 
         setTimeout(() => {
           formStatus.className = 'form-status';
