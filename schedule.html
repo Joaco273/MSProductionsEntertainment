@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Schedule a Meeting | MSProductions</title>
-  <meta name="description" content="Book a 15-minute direct phone or video consultation to discuss your event entertainment with MSProductions.">
+  <meta name="description" content="Book a direct consultation with MSProductions in dark mode to discuss event entertainment, sound setups, and pricing.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="assets/logoMS.png">
 </head>
 <body>
 
-  <!-- Global Header -->
+  <!-- Global Header Navigation (Logo 60px) -->
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="logo-link">
         <img src="assets/logoMS.png" alt="MSProductions Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-        <span style="display:none; font-weight:900; font-size: 1.35rem; letter-spacing:-0.03em;">MS<span class="accent-text">PRODUCTIONS</span></span>
+        <span style="display:none; font-weight:900; font-size: 1.45rem; letter-spacing:-0.03em;">MS<span class="accent-text">PRODUCTIONS</span></span>
       </a>
 
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
@@ -50,22 +50,37 @@
     <!-- Page Hero -->
     <section class="page-hero">
       <div class="container">
-        <span class="hero-tagline">Direct Consultation</span>
-        <h1 class="page-hero-title">Schedule a <span class="highlight">Meeting</span></h1>
-        <p class="page-hero-desc">Select an available time slot below on our calendar to discuss music tastes, timeline logistics, and sound system requirements.</p>
+        <span class="hero-tagline">Direct Calendar Booking</span>
+        <h1 class="page-hero-title">Schedule a <span class="highlight">Consultation</span></h1>
+        <p class="page-hero-desc">Select an appointment time below to connect with our production director regarding music selection, venue acoustics, and event timeline.</p>
       </div>
     </section>
 
-    <!-- Google Calendar Appointment Schedule Embed -->
+    <!-- Dark Mode Embedded Scheduling Widget -->
     <section class="section">
       <div class="container">
-        <div class="calendar-wrapper">
-          <iframe 
-            src="https://calendar.app.google/BZy9ZfgBoafpC3DW9" 
-            class="calendar-iframe" 
-            title="Google Calendar Appointment Scheduling" 
-            loading="lazy">
-          </iframe>
+        <div class="schedule-widget-container">
+          <div class="schedule-widget-header">
+            <div class="schedule-widget-title">
+              <span class="badge-live"></span>
+              Google Calendar Live Appointment System
+            </div>
+            <div>
+              <a href="https://calendar.app.google/BZy9ZfgBoafpC3DW9" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                Open in Full Window &nearr;
+              </a>
+            </div>
+          </div>
+          
+          <!-- Embedded Scheduling with Dark-Mode filter styling -->
+          <div class="calendar-iframe-wrapper">
+            <iframe 
+              src="https://calendar.app.google/BZy9ZfgBoafpC3DW9" 
+              class="calendar-iframe" 
+              title="Google Calendar Appointment Scheduling - MSProductions" 
+              loading="lazy">
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
@@ -77,8 +92,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>MSPRODUCTIONS</h3>
-          <span class="region-tag">Serving the North East Area</span>
-          <p>Providing concert-level audio engineering, dynamic lighting, and bespoke performance entertainment throughout the North East region.</p>
+          <span class="region-tag">Serving the North East & DMV Area</span>
+          <p>Providing concert-level audio engineering, dynamic lighting, and bespoke performance entertainment throughout the North East & DMV regions.</p>
           <p style="margin-top: 0.75rem; font-size: 0.85rem; color: #71717a;">msproductionsentertainment.com / msproductionsofficial.com</p>
         </div>
         <div class="footer-col">
@@ -101,7 +116,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> MSProductions Entertainment. All rights reserved. Serving the North East Area.</p>
+        <p>&copy; <span id="current-year"></span> MSProductions Entertainment. All rights reserved. Serving the North East & DMV Area.</p>
         <p>Hosted on GitHub Pages.</p>
       </div>
     </div>

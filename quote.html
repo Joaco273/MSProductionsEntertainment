@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Request a Quote | MSProductions</title>
-  <meta name="description" content="Request an itemized entertainment quote for weddings, corporate galas, restaurants, and private parties in the North East area.">
+  <title>Request a Custom Quote | MSProductions</title>
+  <meta name="description" content="Request an itemized entertainment quote for weddings, corporate galas, restaurants, and private parties in the DMV and North East area.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="assets/logoMS.png">
 </head>
 <body>
 
-  <!-- Global Header -->
+  <!-- Global Header Navigation (Logo 60px) -->
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="logo-link">
         <img src="assets/logoMS.png" alt="MSProductions Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-        <span style="display:none; font-weight:900; font-size: 1.35rem; letter-spacing:-0.03em;">MS<span class="accent-text">PRODUCTIONS</span></span>
+        <span style="display:none; font-weight:900; font-size: 1.45rem; letter-spacing:-0.03em;">MS<span class="accent-text">PRODUCTIONS</span></span>
       </a>
 
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
     <section class="section">
       <div class="container">
         <div class="form-container">
-          <form id="quote-form" action="https://formspree.io/f/placeholder" method="POST" novalidate>
+          <form id="quote-form" action="https://formspree.io/f/placeholder" method="POST" novalidate autocomplete="off">
             <div class="form-grid">
               
               <!-- Contact Info -->
@@ -82,14 +82,14 @@
                 <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(555) 123-4567">
               </div>
 
-              <!-- Event Type & Venue Location -->
+              <!-- Event Type & Venue Location (Google Places Autocomplete Ready) -->
               <div class="form-group">
                 <label for="eventType" class="form-label">Event Type *</label>
                 <select id="eventType" name="eventType" class="form-select" required>
                   <option value="" disabled selected>Select event category</option>
                   <option value="wedding">Wedding</option>
+                  <option value="restaurant-venue">Restaurant / Lounge Musical Show</option>
                   <option value="corporate-gala">Corporate Gala / Conference</option>
-                  <option value="restaurant-venue">Restaurant / Lounge Residency</option>
                   <option value="private-party">Private Party / Birthday</option>
                   <option value="mitzvah">Bar / Bat Mitzvah</option>
                   <option value="other">Other Event</option>
@@ -97,8 +97,10 @@
               </div>
 
               <div class="form-group">
-                <label for="venueLocation" class="form-label">Venue Location (City, State) *</label>
-                <input type="text" id="venueLocation" name="venueLocation" class="form-input" required placeholder="e.g., The Bellevue Hotel, Philadelphia, PA">
+                <label for="venueLocation" class="form-label">Venue Location / Address *</label>
+                <!-- Interactive Google Places Autocomplete Location Input -->
+                <input type="text" id="venueLocation" name="venueLocation" class="form-input" required placeholder="Start typing venue name or address..." autocomplete="off">
+                <div id="location-hint" style="font-size: 0.76rem; color: var(--text-dim); margin-top: 0.35rem;">Live Google Places autocomplete active</div>
               </div>
 
               <!-- Date Picker (min set to today via JS) -->
@@ -130,7 +132,7 @@
               <!-- Details Area -->
               <div class="form-group full-width">
                 <label for="details" class="form-label">Event Details & Specific Inquiries</label>
-                <textarea id="details" name="details" class="form-textarea" placeholder="Tell us about package preferences, expected guest count, live musician desires (saxophone, percussion), or lighting requests..."></textarea>
+                <textarea id="details" name="details" class="form-textarea" placeholder="Tell us about package preferences (e.g. Wedding Deluxe $5,000, Restaurant Package $1,000, or Add-ons), expected guest count, or venue acoustics..."></textarea>
               </div>
 
               <!-- Submit -->
@@ -152,8 +154,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>MSPRODUCTIONS</h3>
-          <span class="region-tag">Serving the North East Area</span>
-          <p>Providing concert-level audio engineering, dynamic lighting, and bespoke performance entertainment throughout the North East region.</p>
+          <span class="region-tag">Serving the North East & DMV Area</span>
+          <p>Providing concert-level audio engineering, dynamic lighting, and bespoke performance entertainment throughout the North East & DMV regions.</p>
           <p style="margin-top: 0.75rem; font-size: 0.85rem; color: #71717a;">msproductionsentertainment.com / msproductionsofficial.com</p>
         </div>
         <div class="footer-col">
@@ -176,12 +178,14 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> MSProductions Entertainment. All rights reserved. Serving the North East Area.</p>
+        <p>&copy; <span id="current-year"></span> MSProductions Entertainment. All rights reserved. Serving the North East & DMV Area.</p>
         <p>Hosted on GitHub Pages.</p>
       </div>
     </div>
   </footer>
 
+  <!-- Google Places API script loader (ready for production API key or fallback) -->
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initGooglePlaces" async defer></script>
   <script src="main.js"></script>
 </body>
 </html>
