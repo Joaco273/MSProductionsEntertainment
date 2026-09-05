@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Quote | MSProductions</title>
+  <meta name="description" content="Request an itemized entertainment quote for weddings, corporate galas, restaurants, and private parties in the North East area.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="assets/logoMS.png">
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logoMS.png" alt="MSProductions Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+        <span style="display:none; font-weight:900; font-size: 1.35rem; letter-spacing:-0.03em;">MS<span class="accent-text">PRODUCTIONS</span></span>
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">Services ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="weddings.html">Weddings</a></li>
+            <li><a href="corporate.html">Corporate Galas</a></li>
+            <li><a href="restaurants.html">Restaurants & Venues</a></li>
+            <li><a href="parties.html">Private Parties</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="team.html" class="nav-link">Team</a></li>
+        <li class="nav-item"><a href="schedule.html" class="nav-link">Schedule a Meeting</a></li>
+        <li class="nav-item"><a href="quote.html" class="nav-link active">Request a Quote</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="schedule.html" class="btn btn-outline">Schedule a Meeting</a>
+        <a href="quote.html" class="btn btn-primary">Request a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="hero-tagline">Custom Entertainment Proposals</span>
+        <h1 class="page-hero-title">Request a <span class="highlight">Custom Quote</span></h1>
+        <p class="page-hero-desc">Fill out your event specifications below to receive an itemized proposal calibrated for your venue acoustics and schedule.</p>
+      </div>
+    </section>
+
+    <!-- Quote Form Section -->
+    <section class="section">
+      <div class="container">
+        <div class="form-container">
+          <form id="quote-form" action="https://formspree.io/f/placeholder" method="POST" novalidate>
+            <div class="form-grid">
+              
+              <!-- Contact Info -->
+              <div class="form-group">
+                <label for="firstName" class="form-label">First Name *</label>
+                <input type="text" id="firstName" name="firstName" class="form-input" required placeholder="Jane">
+              </div>
+              <div class="form-group">
+                <label for="lastName" class="form-label">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" class="form-input" required placeholder="Doe">
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address *</label>
+                <input type="email" id="email" name="email" class="form-input" required placeholder="jane@example.com">
+              </div>
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(555) 123-4567">
+              </div>
+
+              <!-- Event Type & Venue Location -->
+              <div class="form-group">
+                <label for="eventType" class="form-label">Event Type *</label>
+                <select id="eventType" name="eventType" class="form-select" required>
+                  <option value="" disabled selected>Select event category</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="corporate-gala">Corporate Gala / Conference</option>
+                  <option value="restaurant-venue">Restaurant / Lounge Residency</option>
+                  <option value="private-party">Private Party / Birthday</option>
+                  <option value="mitzvah">Bar / Bat Mitzvah</option>
+                  <option value="other">Other Event</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="venueLocation" class="form-label">Venue Location (City, State) *</label>
+                <input type="text" id="venueLocation" name="venueLocation" class="form-input" required placeholder="e.g., The Bellevue Hotel, Philadelphia, PA">
+              </div>
+
+              <!-- Date Picker (min set to today via JS) -->
+              <div class="form-group full-width">
+                <label for="eventDate" class="form-label">Event Date *</label>
+                <input type="date" id="eventDate" name="eventDate" class="form-input" required>
+                <div id="date-error" class="form-error">Please select a valid upcoming date.</div>
+              </div>
+
+              <!-- Time Selects (15-min intervals) -->
+              <div class="form-group">
+                <label for="startTime" class="form-label">Start Time *</label>
+                <select id="startTime" name="startTime" class="form-select" required>
+                  <option value="" disabled selected>Select start time</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="endTime" class="form-label">End Time *</label>
+                <select id="endTime" name="endTime" class="form-select" required>
+                  <option value="" disabled selected>Select end time</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <div id="time-error" class="form-error">End time must be at least 2 hours after start time.</div>
+              </div>
+
+              <!-- Details Area -->
+              <div class="form-group full-width">
+                <label for="details" class="form-label">Event Details & Specific Inquiries</label>
+                <textarea id="details" name="details" class="form-textarea" placeholder="Tell us about package preferences, expected guest count, live musician desires (saxophone, percussion), or lighting requests..."></textarea>
+              </div>
+
+              <!-- Submit -->
+              <div class="form-group full-width">
+                <button type="submit" class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1rem;">Submit Quote Request</button>
+              </div>
+            </div>
+
+            <div id="form-status" class="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>MSPRODUCTIONS</h3>
+          <span class="region-tag">Serving the North East Area</span>
+          <p>Providing concert-level audio engineering, dynamic lighting, and bespoke performance entertainment throughout the North East region.</p>
+          <p style="margin-top: 0.75rem; font-size: 0.85rem; color: #71717a;">msproductionsentertainment.com / msproductionsofficial.com</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="weddings.html">Weddings</a></li>
+            <li><a href="corporate.html">Corporate Galas</a></li>
+            <li><a href="restaurants.html">Restaurants & Lounges</a></li>
+            <li><a href="parties.html">Private Parties</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="schedule.html">Schedule a Meeting</a></li>
+            <li><a href="quote.html">Request a Quote</a></li>
+            <li><a href="mailto:info@msproductionsentertainment.com">info@msproductionsentertainment.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> MSProductions Entertainment. All rights reserved. Serving the North East Area.</p>
+        <p>Hosted on GitHub Pages.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
