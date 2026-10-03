@@ -29,6 +29,12 @@
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -187,6 +193,7 @@ img {
   font-size: 0.9rem;
   letter-spacing: 0.02em;
   padding: 0.75rem 1.45rem;
+  min-height: 44px;
   border-radius: var(--radius-sm);
   transition: var(--transition);
   cursor: pointer;
@@ -221,6 +228,7 @@ img {
 .btn-sm {
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
+  min-height: 38px;
 }
 
 .btn-block {
@@ -232,7 +240,13 @@ img {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-toggle span {
@@ -240,8 +254,21 @@ img {
   width: 26px;
   height: 2.5px;
   background-color: #ffffff;
-  margin: 5px 0;
-  transition: var(--transition);
+  margin: 5px auto;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  border-radius: 2px;
+}
+
+.mobile-toggle.active span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
 }
 
 /* Immersive Hero Section */
@@ -575,6 +602,112 @@ img {
   padding-left: 1.5rem;
 }
 
+/* Pricing Grid & Cards (Used in Corporate & Parties) */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+  width: 100%;
+}
+
+.pricing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: var(--transition);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pricing-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-color-hover);
+}
+
+.pricing-card.featured {
+  border-color: var(--red-accent);
+  box-shadow: 0 8px 30px rgba(211, 47, 47, 0.25);
+  background: linear-gradient(180deg, rgba(211, 47, 47, 0.05) 0%, var(--bg-card) 100%);
+}
+
+.badge-featured {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background-color: var(--red-primary);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pricing-header {
+  margin-bottom: 1.75rem;
+}
+
+.package-name {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.package-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.package-price {
+  font-size: 1.85rem;
+  font-weight: 900;
+  margin: 1.25rem 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  color: #ffffff;
+}
+
+.package-price span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.package-features {
+  list-style: none;
+  margin-bottom: 2.25rem;
+  flex-grow: 1;
+}
+
+.package-features li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.92rem;
+  color: #e4e4e7;
+  word-wrap: break-word;
+}
+
+.package-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--red-accent);
+  font-weight: 800;
+}
+
 /* Event Services Grid */
 .services-grid {
   display: grid;
@@ -802,14 +935,16 @@ img {
 .form-select,
 .form-textarea {
   width: 100%;
+  min-height: 48px;
   padding: 0.8rem 1rem;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 16px; /* Prevents auto-zoom on mobile Safari */
   color: #ffffff;
   background-color: var(--bg-surface);
   transition: var(--transition);
+  box-sizing: border-box;
 }
 
 .form-input:focus,
@@ -869,17 +1004,43 @@ img {
 .form-status {
   display: none;
   margin-top: 1.25rem;
-  padding: 0.9rem 1rem;
+  padding: 1rem 1.25rem;
   border-radius: var(--radius-sm);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
   text-align: center;
 }
 
 .form-status.success {
   display: block;
   background-color: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  border: 1px solid rgba(34, 197, 94, 0.35);
   color: #4ade80;
+}
+
+.form-status.error {
+  display: block;
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.form-status.error a {
+  color: #ff334b;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+/* Suppress Google Maps API Error Dialogs & Modals */
+.gm-err-container, 
+.gm-err-message,
+.gm-err-autocomplete,
+div[style*="z-index: 1000000"],
+div[style*="z-index: 1000001"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Dark Mode Scheduling Widget Container */
@@ -1010,71 +1171,376 @@ img {
   font-size: 0.85rem;
 }
 
-/* Responsive */
+/* Responsive Styles */
 @media (max-width: 860px) {
   .header-container {
-    height: 80px;
+    height: 74px;
+    position: relative;
   }
 
   .logo-img {
-    height: 52px;
+    height: 48px;
+    max-height: 50px;
   }
 
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background-color: var(--bg-surface);
-    flex-direction: column;
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow-lg);
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .nav-menu.active {
-    display: flex;
-  }
-
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    border: none;
-    padding-left: 1rem;
-    display: block;
-    background: transparent;
+  .logo-link {
+    font-size: 1.2rem;
   }
 
   .mobile-toggle {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    order: 3;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    z-index: 1002;
+  }
+
+  .header-actions {
+    order: 2;
+    margin-left: auto;
+    margin-right: 0.5rem;
   }
 
   .header-actions .btn-outline {
     display: none;
   }
 
+  .header-actions .btn-primary {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+    min-height: 40px;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 74px;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-surface);
+    flex-direction: column;
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.8);
+    gap: 0.75rem;
+    align-items: stretch;
+    z-index: 1001;
+    max-height: calc(100vh - 74px);
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 0.75rem 0.5rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-left: 2px solid var(--red-accent);
+    padding: 0.25rem 0 0.5rem 1rem;
+    margin: 0.25rem 0 0.5rem 0.5rem;
+    display: block;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.92rem;
+  }
+
   .hero-title {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 2.75rem);
   }
 
   .hero-actions {
     flex-direction: column;
     gap: 0.85rem;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
   }
 
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-group.full-width {
-    grid-column: span 1;
+  .hero-actions .btn {
+    width: 100%;
   }
 
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .page-hero {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .page-hero-title {
+    font-size: 2rem;
+  }
+
+  .page-hero-desc {
+    font-size: 1rem;
+  }
+
+  /* Package & Pricing Cards: 100% width stacking without clipping */
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    width: 100%;
+  }
+
+  .pricing-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 1.25rem;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .package-price {
+    font-size: 1.6rem;
+  }
+
+  /* Scannable Package Table: Transform into clean 100% width stacked cards on mobile */
+  .pricing-table-container {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 2.5rem;
+  }
+
+  .table-responsive {
+    overflow-x: visible;
+    width: 100%;
+  }
+
+  .pricing-table {
+    display: block;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .pricing-table thead {
+    display: none;
+  }
+
+  .pricing-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .pricing-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.25rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .pricing-table tbody tr.featured-row {
+    border-color: var(--red-accent);
+    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.2);
+    background: linear-gradient(180deg, rgba(211, 47, 47, 0.08) 0%, var(--bg-card) 100%);
+  }
+
+  .pricing-table td {
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0;
+    border-bottom: none;
+    box-sizing: border-box;
+  }
+
+  .pricing-table td:last-child {
+    padding-top: 1rem;
+  }
+
+  .pkg-cell-title {
+    font-size: 1.2rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .pkg-cell-price {
+    font-size: 1.5rem;
+  }
+
+  .inclusions-list {
+    font-size: 0.9rem;
+  }
+
+  .inclusions-list li {
+    word-wrap: break-word;
+  }
+
+  /* Add-ons Grid */
+  .addons-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .addon-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+    gap: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .addon-price {
+    padding-left: 0;
+    font-size: 1.35rem;
+  }
+
+  /* Services Grid */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .service-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Capabilities Grid */
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .capability-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Team Grid */
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .team-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .team-photo-wrap {
+    height: 320px;
+  }
+
+  /* Form Layout */
+  .form-container {
+    padding: 1.75rem 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1 !important;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    min-height: 48px;
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+
+  /* Schedule widget iframe container */
+  .calendar-iframe-wrapper {
+    height: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .logo-img {
+    height: 42px;
+  }
+
+  .header-actions .btn-primary {
+    display: none;
+  }
+
+  .hero-content {
+    padding: 3.5rem 0;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .form-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .schedule-widget-header {
+    padding: 1rem 1.25rem;
   }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -60,7 +60,7 @@
     <section class="section">
       <div class="container">
         <div class="form-container">
-          <form id="quote-form" action="https://formspree.io/f/placeholder" method="POST" novalidate autocomplete="off">
+          <form id="quote-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate autocomplete="off">
             <div class="form-grid">
               
               <!-- Contact Info -->
@@ -98,9 +98,9 @@
 
               <div class="form-group">
                 <label for="venueLocation" class="form-label">Venue Location / Address *</label>
-                <!-- Interactive Google Places Autocomplete Location Input -->
-                <input type="text" id="venueLocation" name="venueLocation" class="form-input" required placeholder="Start typing venue name or address..." autocomplete="off">
-                <div id="location-hint" style="font-size: 0.76rem; color: var(--text-dim); margin-top: 0.35rem;">Live Google Places autocomplete active</div>
+                <!-- Interactive Google Places Autocomplete Location Input with graceful manual fallback -->
+                <input type="text" id="venueLocation" name="venue" class="form-input" required placeholder="Start typing venue name or address..." autocomplete="off">
+                <div id="location-hint" style="font-size: 0.76rem; color: var(--text-dim); margin-top: 0.35rem;">Enter venue name and city/state</div>
               </div>
 
               <!-- Date Picker (min set to today via JS) -->
@@ -125,6 +125,9 @@
                 </select>
               </div>
 
+              <!-- Hidden duration field to provide calculated event duration in email notifications -->
+              <input type="hidden" id="duration" name="duration" value="">
+
               <div class="form-group full-width">
                 <div id="time-error" class="form-error">End time must be at least 2 hours after start time.</div>
               </div>
@@ -137,11 +140,11 @@
 
               <!-- Submit -->
               <div class="form-group full-width">
-                <button type="submit" class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1rem;">Submit Quote Request</button>
+                <button type="submit" id="submit-btn" class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1rem;">Submit Quote Request</button>
               </div>
             </div>
 
-            <div id="form-status" class="form-status"></div>
+            <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
           </form>
         </div>
       </div>
@@ -184,8 +187,14 @@
     </div>
   </footer>
 
-  <!-- Google Places API script loader (ready for production API key or fallback) -->
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initGooglePlaces" async defer></script>
+  <!-- Core application logic (loaded first so gm_authFailure and initGooglePlaces are defined) -->
   <script src="main.js"></script>
+  <!-- Google Places API script loader with centralized API key placeholder & graceful fallback -->
+  <script 
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initGooglePlaces" 
+    async 
+    defer 
+    onerror="console.warn('Google Maps script failed to load. Manual venue input fallback active.');">
+  </script>
 </body>
 </html>
