@@ -98,9 +98,14 @@
 
               <div class="form-group">
                 <label for="venueLocation" class="form-label">Venue Location / Address *</label>
-                <!-- Interactive Google Places Autocomplete Location Input with graceful manual fallback -->
-                <input type="text" id="venueLocation" name="venue" class="form-input" required placeholder="Start typing venue name or address..." autocomplete="off">
-                <div id="location-hint" style="font-size: 0.76rem; color: var(--text-dim); margin-top: 0.35rem;">Enter venue name and city/state</div>
+                <input 
+                  type="text" 
+                  id="venueLocation" 
+                  name="venue" 
+                  required 
+                  placeholder="Start typing venue name or address..." 
+                  class="form-input"
+                >
               </div>
 
               <!-- Date Picker (min set to today via JS) -->
@@ -187,14 +192,6 @@
     </div>
   </footer>
 
-  <!-- Core application logic (loaded first so gm_authFailure and initGooglePlaces are defined) -->
   <script src="main.js"></script>
-  <!-- Google Places API script loader with centralized API key placeholder & graceful fallback -->
-  <script 
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initGooglePlaces" 
-    async 
-    defer 
-    onerror="console.warn('Google Maps script failed to load. Manual venue input fallback active.');">
-  </script>
 </body>
 </html>

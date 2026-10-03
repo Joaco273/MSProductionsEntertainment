@@ -32,41 +32,6 @@ if (mobileToggle && navMenu) {
   });
 }
 
-// Google Maps Authentication Failure Handler
-window.gm_authFailure = function () {
-  console.warn('Google Maps API authentication notice: Running in standard input mode.');
-};
-
-// Google Places Autocomplete API Integration
-window.initGooglePlaces = function () {
-  const input = document.getElementById('venueLocation');
-  if (!input) return;
-
-  // If placeholder API key is used, do not attach Google Autocomplete to avoid any interference
-  const mapsScript = document.querySelector('script[src*="maps.googleapis.com"]');
-  if (mapsScript && mapsScript.src.includes('YOUR_GOOGLE_MAPS_API_KEY')) {
-    return;
-  }
-
-  try {
-    if (window.google && window.google.maps && window.google.maps.places) {
-      const autocomplete = new google.maps.places.Autocomplete(input, {
-        types: ['establishment', 'geocode'],
-        componentRestrictions: { country: 'us' },
-        fields: ['formatted_address', 'name', 'geometry']
-      });
-
-      autocomplete.addListener('place_changed', function () {
-        const place = autocomplete.getPlace();
-        if (place && place.formatted_address) {
-          input.value = place.name ? `${place.name}, ${place.formatted_address}` : place.formatted_address;
-        }
-      });
-    }
-  } catch (err) {
-    console.warn('Google Places initialization fallback active:', err);
-  }
-};
 
 // URL Query Params Package Pre-selection
 window.addEventListener('DOMContentLoaded', () => {
@@ -92,10 +57,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Attempt Google Places initialization if API is already loaded
-  if (window.google && window.google.maps && window.google.maps.places) {
-    window.initGooglePlaces();
-  }
 
   initQuoteForm();
 });

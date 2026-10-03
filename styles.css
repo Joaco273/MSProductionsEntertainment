@@ -960,35 +960,6 @@ img {
   min-height: 120px;
 }
 
-/* Google Places Autocomplete dropdown dark styling */
-.pac-container {
-  background-color: #141419 !important;
-  border: 1px solid #3d3d4b !important;
-  border-radius: var(--radius-sm) !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8) !important;
-  font-family: var(--font-main) !important;
-  z-index: 9999 !important;
-}
-
-.pac-item {
-  border-top: 1px solid #24242d !important;
-  padding: 8px 12px !important;
-  color: #ffffff !important;
-  cursor: pointer !important;
-}
-
-.pac-item:hover, .pac-item-selected {
-  background-color: #1e1e26 !important;
-}
-
-.pac-item-query {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-}
-
-.pac-matched {
-  color: var(--red-accent) !important;
-}
 
 .form-error {
   display: none;
@@ -1031,36 +1002,30 @@ img {
   font-weight: 700;
 }
 
-/* Ensure #venueLocation is always permanently active, interactive, and editable */
-#venueLocation,
-#venueLocation.gm-err-autocomplete {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+/* Ensure #venueLocation uses the exact same styles as First Name, Last Name, and Email inputs */
+#venueLocation {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: var(--bg-surface);
+  transition: var(--transition);
+  box-sizing: border-box;
+  display: block;
   pointer-events: auto !important;
   cursor: text !important;
-  background-image: none !important;
   -webkit-user-select: text !important;
   user-select: text !important;
 }
 
-#venueLocation:focus,
-#venueLocation.gm-err-autocomplete:focus {
-  outline: none !important;
-  border-color: var(--red-accent) !important;
-  box-shadow: 0 0 0 3px rgba(255, 51, 75, 0.22) !important;
-}
-
-/* Suppress Google Maps API Error Dialogs & Modals (dialog overlays only) */
-.gm-err-container, 
-.gm-err-message,
-.gm-err-content,
-div[style*="z-index: 1000000"],
-div[style*="z-index: 1000001"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+#venueLocation:focus {
+  outline: none;
+  border-color: var(--red-accent);
+  box-shadow: 0 0 0 3px rgba(255, 51, 75, 0.22);
 }
 
 /* Dark Mode Scheduling Widget Container */
