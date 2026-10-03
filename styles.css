@@ -1031,10 +1031,30 @@ img {
   font-weight: 700;
 }
 
-/* Suppress Google Maps API Error Dialogs & Modals */
+/* Ensure #venueLocation is always permanently active, interactive, and editable */
+#venueLocation,
+#venueLocation.gm-err-autocomplete {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: text !important;
+  background-image: none !important;
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
+#venueLocation:focus,
+#venueLocation.gm-err-autocomplete:focus {
+  outline: none !important;
+  border-color: var(--red-accent) !important;
+  box-shadow: 0 0 0 3px rgba(255, 51, 75, 0.22) !important;
+}
+
+/* Suppress Google Maps API Error Dialogs & Modals (dialog overlays only) */
 .gm-err-container, 
 .gm-err-message,
-.gm-err-autocomplete,
+.gm-err-content,
 div[style*="z-index: 1000000"],
 div[style*="z-index: 1000001"] {
   display: none !important;

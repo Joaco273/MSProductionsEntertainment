@@ -1,4 +1,4 @@
-﻿// Dynamic copyright year
+// Dynamic copyright year
 const yearSpan = document.getElementById('current-year');
 if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
@@ -32,31 +32,21 @@ if (mobileToggle && navMenu) {
   });
 }
 
-// Google Maps Authentication Failure Handler & Fallback
+// Google Maps Authentication Failure Handler
 window.gm_authFailure = function () {
-  console.warn('Google Maps API: Authentication failed or placeholder API key in use (YOUR_GOOGLE_MAPS_API_KEY). Standard text input fallback is active.');
-
-  const hint = document.getElementById('location-hint');
-  if (hint) {
-    hint.textContent = 'Enter venue name and city/state manually.';
-  }
-
-  // Remove any breaking error dialog or modal overlay injected by Google Maps
-  const removeGoogleModals = () => {
-    const errorContainers = document.querySelectorAll('.gm-err-container, .gm-err-message, div[style*="z-index: 1000000"], div[style*="z-index: 1000001"]');
-    errorContainers.forEach(el => el.remove());
-  };
-
-  removeGoogleModals();
-  setTimeout(removeGoogleModals, 100);
-  setTimeout(removeGoogleModals, 500);
-  setTimeout(removeGoogleModals, 1500);
+  console.warn('Google Maps API authentication notice: Running in standard input mode.');
 };
 
 // Google Places Autocomplete API Integration
 window.initGooglePlaces = function () {
   const input = document.getElementById('venueLocation');
   if (!input) return;
+
+  // If placeholder API key is used, do not attach Google Autocomplete to avoid any interference
+  const mapsScript = document.querySelector('script[src*="maps.googleapis.com"]');
+  if (mapsScript && mapsScript.src.includes('YOUR_GOOGLE_MAPS_API_KEY')) {
+    return;
+  }
 
   try {
     if (window.google && window.google.maps && window.google.maps.places) {
