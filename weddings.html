@@ -10,12 +10,12 @@
 </head>
 <body>
 
-  <!-- Global Header Navigation (Logo 60px) -->
+  <!-- Global Header Navigation (Logo 56px-60px) -->
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="logo-link">
         <img src="assets/logoMS.png" alt="MSProductions Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-        <span style="display:none; font-weight:900; font-size: 1.45rem; letter-spacing:-0.03em;">MS<span class="accent-text">PRODUCTIONS</span></span>
+        <span style="display:none; font-weight:800; font-size: 1.35rem; letter-spacing:-0.03em;">MS<span class="accent-text">PRODUCTIONS</span></span>
       </a>
 
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
@@ -51,120 +51,123 @@
     <section class="page-hero">
       <div class="container">
         <span class="hero-tagline">DMV & North East Wedding Production</span>
-        <h1 class="page-hero-title">Wedding Entertainment & <span class="highlight">Production Packages</span></h1>
-        <p class="page-hero-desc">Curated audiovisual, lighting, and performance tiers designed to elevate your wedding ceremony and reception.</p>
+        <h1 class="page-hero-title">Wedding Entertainment & <span class="highlight">Production Tiers</span></h1>
+        <p class="page-hero-desc">Curated audiovisual, lighting, and live performance tiers designed to elevate your wedding ceremony and reception.</p>
+
+        <!-- Service Page Banner Placeholder -->
+        <div class="page-banner-wrap">
+          <div class="asset-placeholder aspect-16-9">
+            <div class="placeholder-inner">
+              <span class="placeholder-badge">
+                <svg class="placeholder-icon" viewBox="0 0 24 24"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                Wedding Media Banner • 16:9 Aspect Ratio
+              </span>
+              <p class="placeholder-label">[PLACEHOLDER: 16:9 cinematic shot of luxury wedding ceremony audio setup and romantic first dance under cold sparks and low-lying cloud fog]</p>
+              <span class="placeholder-meta">Ceremony & Ballroom • Cold Sparks & Dry Ice Low Fog</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Modern Scannable Pricing Table Layout -->
+    <!-- Clean Unboxed Editorial Cards (Replaces Dense Software Table) -->
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <div class="section-subtitle">Package Comparison</div>
-          <h2 class="section-title">Transparent Package Pricing</h2>
-          <p class="section-desc">Itemized breakdown of sound coverage, lighting gear, animation, and visual effects.</p>
+          <span class="section-subtitle">Curated Wedding Collections</span>
+          <h2 class="section-title">Transparent Package Investment</h2>
+          <p class="section-desc">Itemized breakdown of acoustic coverage, intelligent lighting, bilingual hosting, and atmospheric special effects.</p>
         </div>
 
-        <div class="pricing-table-container">
-          <div class="table-responsive">
-            <table class="pricing-table">
-              <thead>
-                <tr>
-                  <th style="width: 25%;">Package</th>
-                  <th style="width: 18%;">Price (USD)</th>
-                  <th style="width: 42%;">Inclusions & Specifications</th>
-                  <th style="width: 15%;">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Basic Package ($800) -->
-                <tr>
-                  <td>
-                    <div class="pkg-cell-title">
-                      Basic Package
-                    </div>
-                    <span class="duration-pill" style="margin-top: 0.4rem;">DMV Area • 6 Hours</span>
-                  </td>
-                  <td>
-                    <div class="pkg-cell-price">$800 <span>USD</span></div>
-                  </td>
-                  <td>
-                    <ul class="inclusions-list">
-                      <li>DJ & Basic Animation</li>
-                      <li>Sound system for up to 150 guests</li>
-                      <li>1 Wireless microphone for speeches</li>
-                      <li>6 Uplight LEDs (ambient room color)</li>
-                      <li>Smoke machine effect</li>
-                    </ul>
-                  </td>
-                  <td>
-                    <a href="quote.html?package=wedding-basic" class="btn btn-outline btn-sm btn-block">Select</a>
-                  </td>
-                </tr>
+        <div class="editorial-packages-grid">
+          <!-- Tier 1: Basic Package ($800) -->
+          <div class="editorial-pkg-card">
+            <div class="pkg-header">
+              <span class="pkg-eyebrow">Acoustic Essentials</span>
+              <h3 class="pkg-name">Basic Package</h3>
+              <p class="pkg-subtitle">Clean sound reinforcement and curated dance music for intimate wedding receptions.</p>
+              <div class="pkg-price-wrap">
+                <span class="pkg-price-amount">$800</span>
+                <span class="pkg-price-currency">USD</span>
+              </div>
+              <span class="pkg-duration-pill">DMV Area • 6 Hours Coverage</span>
+            </div>
 
-                <!-- Premium Package ($2,000) Featured -->
-                <tr class="featured-row">
-                  <td>
-                    <div class="pkg-cell-title">
-                      Premium Package
-                      <span class="pkg-tag">Most Popular</span>
-                    </div>
-                    <span class="duration-pill" style="margin-top: 0.4rem;">DMV Area • 6 Hours</span>
-                  </td>
-                  <td>
-                    <div class="pkg-cell-price">$2,000 <span>USD</span></div>
-                  </td>
-                  <td>
-                    <ul class="inclusions-list">
-                      <li>Professional DJ & Bilingual MC Host</li>
-                      <li>Concert-grade sound system for up to 200 guests</li>
-                      <li>2 Wireless microphones</li>
-                      <li>12 Wireless uplight LEDs</li>
-                      <li>4 Moving head beam spotlights</li>
-                      <li>Smoke & low-lying fog machine</li>
-                      <li>2 Indoor/outdoor cold sparkler machines</li>
-                    </ul>
-                  </td>
-                  <td>
-                    <a href="quote.html?package=wedding-premium" class="btn btn-primary btn-sm btn-block">Select</a>
-                  </td>
-                </tr>
+            <ul class="pkg-inclusions">
+              <li><strong>Open-Format DJ & Basic Animation</strong></li>
+              <li>Concert-tuned sound system calibrated for up to 150 guests</li>
+              <li>1 Professional wireless high-gain microphone for speeches</li>
+              <li>6 Wireless LED uplights programmed for ambient room tone</li>
+              <li>Atmospheric smoke machine effect for dance floor peak</li>
+            </ul>
 
-                <!-- Deluxe Package ($5,000) -->
-                <tr>
-                  <td>
-                    <div class="pkg-cell-title">
-                      Deluxe Package
-                      <span class="pkg-tag" style="background:#ff334b;">VIP</span>
-                    </div>
-                    <span class="duration-pill" style="margin-top: 0.4rem;">DMV Area • 6 Hours</span>
-                  </td>
-                  <td>
-                    <div class="pkg-cell-price">$5,000 <span>USD</span></div>
-                  </td>
-                  <td>
-                    <ul class="inclusions-list">
-                      <li>Professional DJ & Bilingual MC Host</li>
-                      <li>Large format sound system for 200–300 guests</li>
-                      <li>2 Wireless high-gain microphones</li>
-                      <li>10' x 7' High-definition LED Video Screen</li>
-                      <li>14' x 14' Interactive LED Dance Floor</li>
-                      <li>4 Cold sparkler machines</li>
-                      <li>Full fog & smoke atmospheric suite</li>
-                    </ul>
-                  </td>
-                  <td>
-                    <a href="quote.html?package=wedding-deluxe" class="btn btn-outline btn-sm btn-block">Select</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="pkg-action">
+              <a href="quote.html?package=wedding-basic" class="btn btn-outline btn-block">Select Package</a>
+            </div>
+          </div>
+
+          <!-- Tier 2: Premium Package ($2,000) - Featured / Most Popular -->
+          <div class="editorial-pkg-card featured">
+            <span class="pkg-badge">Most Popular</span>
+            <div class="pkg-header">
+              <span class="pkg-eyebrow">Signature Experience</span>
+              <h3 class="pkg-name">Premium Package</h3>
+              <p class="pkg-subtitle">The gold standard for high-energy wedding receptions combining concert audio, beam lights, and cold spark fountains.</p>
+              <div class="pkg-price-wrap">
+                <span class="pkg-price-amount">$2,000</span>
+                <span class="pkg-price-currency">USD</span>
+              </div>
+              <span class="pkg-duration-pill">DMV Area • 6 Hours Coverage</span>
+            </div>
+
+            <ul class="pkg-inclusions">
+              <li><strong>Lead Event DJ & Bilingual MC Host</strong> for seamless timeline flow</li>
+              <li>Concert-grade sound system calibrated for up to 200 guests</li>
+              <li>2 Digital wireless microphones with redundant battery packs</li>
+              <li>12 Wireless perimeter uplight LEDs in your wedding palette</li>
+              <li>4 Computer-synced moving head beam spotlights on truss stands</li>
+              <li>Dance floor smoke & romantic low-lying cloud fog machine</li>
+              <li>2 Indoor/outdoor cold sparkler fountains for grand entrance & first dance</li>
+            </ul>
+
+            <div class="pkg-action">
+              <a href="quote.html?package=wedding-premium" class="btn btn-primary btn-block">Select Package</a>
+            </div>
+          </div>
+
+          <!-- Tier 3: Deluxe Package ($5,000) - VIP -->
+          <div class="editorial-pkg-card">
+            <span class="pkg-badge pkg-badge-vip">VIP Tier</span>
+            <div class="pkg-header">
+              <span class="pkg-eyebrow">Concert Production</span>
+              <h3 class="pkg-name">Deluxe Package</h3>
+              <p class="pkg-subtitle">A festival-grade ballroom transformation with a 10'x7' LED video screen, interactive LED dance floor, and cold sparks.</p>
+              <div class="pkg-price-wrap">
+                <span class="pkg-price-amount">$5,000</span>
+                <span class="pkg-price-currency">USD</span>
+              </div>
+              <span class="pkg-duration-pill">DMV Area • 6 Hours Coverage</span>
+            </div>
+
+            <ul class="pkg-inclusions">
+              <li><strong>Lead Event DJ & Bilingual MC Host</strong> directing formal introductions</li>
+              <li>Large-format active line array system engineered for 200–300 guests</li>
+              <li>2 High-gain digital wireless microphones calibrated for zero feedback</li>
+              <li><strong>10' x 7' High-Definition LED Video Screen</strong> for custom visuals & monograms</li>
+              <li><strong>14' x 14' Interactive Illuminated LED Dance Floor</strong></li>
+              <li>4 Indoor/outdoor cold sparkler fountains</li>
+              <li>Full fog & low-lying dry ice atmospheric suite</li>
+            </ul>
+
+            <div class="pkg-action">
+              <a href="quote.html?package=wedding-deluxe" class="btn btn-outline btn-block">Select Package</a>
+            </div>
           </div>
         </div>
 
         <!-- Add-ons Section -->
-        <div class="section-header" style="margin-bottom: 2rem; margin-top: 1rem;">
-          <div class="section-subtitle">Enhance Your Experience</div>
+        <div class="section-header" style="margin-bottom: 2.5rem; margin-top: 1rem;">
+          <span class="section-subtitle">Bespoke Enhancements</span>
           <h2 class="section-title">Ceremony & Live Show Add-Ons</h2>
         </div>
 
@@ -172,8 +175,8 @@
           <!-- Add-on 1: Cocktail & Ceremony -->
           <div class="addon-card">
             <div class="addon-info">
-              <h4>Cocktail & Ceremony Sound</h4>
-              <p>Dedicated DJ setup, 2 high-clarity speakers with stands, and 1 wireless microphone for the officiant and vows.</p>
+              <h4>Cocktail & Ceremony Sound Setup</h4>
+              <p>Dedicated satellite audio setup, 2 high-clarity column speakers with stands, and 1 wireless lavalier/handheld mic for the officiant and vows.</p>
             </div>
             <div class="addon-price">+$400 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">USD</span></div>
           </div>
@@ -182,7 +185,7 @@
           <div class="addon-card">
             <div class="addon-info">
               <h4>Live Musical Show (Latin Romantic)</h4>
-              <p>Captivating 45-minute live Latin Romantic music show performed by 2 professional singers during dinner.</p>
+              <p>Captivating 45-minute live Latin Romantic vocal performance delivered by Alberto José and guest singer during dinner courses.</p>
             </div>
             <div class="addon-price">+$400 <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">USD</span></div>
           </div>
@@ -194,9 +197,11 @@
     <section class="section section-alt" style="text-align: center;">
       <div class="container">
         <h2 class="section-title">Ready to Design Your Wedding Timeline?</h2>
-        <p class="section-desc" style="margin-bottom: 2rem;">Book a 15-minute consultation to walk through custom playlists, lighting colors, and venue layouts.</p>
-        <a href="schedule.html" class="btn btn-primary" style="margin-right: 0.75rem;">Schedule a Meeting</a>
-        <a href="quote.html" class="btn btn-outline">Request Custom Quote</a>
+        <p class="section-desc" style="margin-bottom: 2.5rem;">Book a 15-minute consultation to walk through custom playlists, lighting colors, and venue layouts.</p>
+        <div style="display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+          <a href="schedule.html" class="btn btn-primary">Schedule a Meeting</a>
+          <a href="quote.html" class="btn btn-outline">Request Custom Quote</a>
+        </div>
       </div>
     </section>
   </main>
