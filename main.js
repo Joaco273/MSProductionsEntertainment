@@ -59,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   initQuoteForm();
+  initVideoPerformanceSystem();
 });
 
 function formatTimeLabel(totalMinutes) {
@@ -261,4 +262,115 @@ function initQuoteForm() {
       }
     });
   }
+}
+
+// ==========================================================================
+// VIDEO PERFORMANCE, MUTUAL AUDIO EXCLUSION & LAZY-LOADING SYSTEM
+// ==========================================================================
+function initVideoPerformanceSystem() {
+  const videoContainers = document.querySelectorAll('.gallery-video-wrap, [data-video-wrap]');
+  const allVideos = document.querySelectorAll('video');
+  if (!allVideos.length) return;
+
+  function updateAudioUI(container, isMuted) {
+    const audioBtn = container.querySelector('.video-audio-btn');
+    if (!audioBtn) return;
+    const label = audioBtn.querySelector('.audio-btn-label');
+    if (isMuted) {
+      audioBtn.classList.remove('is-unmuted');
+      audioBtn.classList.add('is-muted');
+      audioBtn.setAttribute('aria-label', 'Unmute audio');
+      if (label) label.textContent = 'Tap to unmute';
+    } else {
+      audioBtn.classList.remove('is-muted');
+      audioBtn.classList.add('is-unmuted');
+      audioBtn.setAttribute('aria-label', 'Mute audio');
+      if (label) label.textContent = 'Mute';
+    }
+  }
+
+  // 1. Initial State: Force all videos to start muted
+  allVideos.forEach(video => {
+    video.muted = true;
+    const container = video.closest('.gallery-video-wrap') || video.parentElement;
+    if (container) updateAudioUI(container, true);
+  });
+
+  // 2. Audio Mutual Exclusion & Tap-to-Mute
+  videoContainers.forEach(container => {
+    const video = container.querySelector('video');
+    if (!video) return;
+
+    container.addEventListener('click', (e) => {
+      e.preventDefault();
+      const shouldUnmute = video.muted;
+
+      if (shouldUnmute) {
+        // Unmute clicked video
+        video.muted = false;
+
+        // Mutual audio exclusion: force all other videos on the page to mute immediately
+        allVideos.forEach(otherVideo => {
+          if (otherVideo !== video) {
+            otherVideo.muted = true;
+            const otherContainer = otherVideo.closest('.gallery-video-wrap') || otherVideo.parentElement;
+            if (otherContainer) updateAudioUI(otherContainer, true);
+          }
+        });
+
+        // Ensure playback continues uninterrupted without visual freeze
+        video.play().catch(() => {});
+        updateAudioUI(container, false);
+      } else {
+        // Mute clicked video
+        video.muted = true;
+        video.play().catch(() => {});
+        updateAudioUI(container, true);
+      }
+    });
+  });
+
+  // 3. Bandwidth Optimization via IntersectionObserver (threshold: 0.25)
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        const container = video.closest('.gallery-video-wrap') || video.parentElement;
+
+        if (entry.isIntersecting) {
+          // Video enters viewport (>= 0.25 threshold): resume playback
+          video.play().catch(() => {});
+        } else {
+          // Video leaves viewport: pause immediately to halt decoding & buffering
+          video.pause();
+          // Reset video.muted = true so audio never plays off-screen
+          if (!video.muted) {
+            video.muted = true;
+            if (container) updateAudioUI(container, true);
+          }
+        }
+      });
+    }, {
+      threshold: 0.25
+    });
+
+    allVideos.forEach(video => videoObserver.observe(video));
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    allVideos.forEach(video => video.play().catch(() => {}));
+  }
+
+  // 4. Background Tab Inactivity Optimization
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      allVideos.forEach(video => {
+        video.pause();
+        if (!video.muted) {
+          video.muted = true;
+          const container = video.closest('.gallery-video-wrap') || video.parentElement;
+          if (container) updateAudioUI(container, true);
+        }
+      });
+    }
+  });
 }

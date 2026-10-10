@@ -627,22 +627,29 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .gallery-video-wrap.aspect-4-5 {
   aspect-ratio: 4 / 5;
+  width: 100%;
 }
 
 .gallery-video-wrap.aspect-1-1 {
   aspect-ratio: 1 / 1;
+  width: 100%;
 }
 
 .gallery-video-wrap.aspect-16-9 {
   aspect-ratio: 16 / 9;
+  width: 100%;
 }
 
 .gallery-video-wrap.aspect-3-2 {
   aspect-ratio: 3 / 2;
+  width: 100%;
 }
 
 .gallery-video {
@@ -651,6 +658,78 @@ img {
   object-fit: cover;
   display: block;
   background-color: #0b0b0d;
+  pointer-events: none;
+}
+
+/* Floating Audio Indicator Button */
+.video-audio-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(11, 11, 14, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: var(--font-headline);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+  pointer-events: auto;
+}
+
+.video-audio-btn:hover {
+  background: rgba(22, 22, 28, 0.95);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: scale(1.04);
+}
+
+.video-audio-btn svg {
+  display: block;
+  flex-shrink: 0;
+  stroke: #ffffff;
+}
+
+.video-audio-btn .audio-icon-unmuted {
+  display: none;
+  stroke: var(--crimson-accent);
+}
+
+.video-audio-btn.is-unmuted {
+  border-color: var(--crimson-accent);
+  background: rgba(229, 9, 20, 0.22);
+}
+
+.video-audio-btn.is-unmuted .audio-icon-muted {
+  display: none;
+}
+
+.video-audio-btn.is-unmuted .audio-icon-unmuted {
+  display: block;
+}
+
+.video-audio-btn.is-unmuted .audio-btn-label {
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .video-audio-btn .audio-btn-label {
+    display: none;
+  }
+  .video-audio-btn {
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
 }
 
 .video-overlay-badge {
